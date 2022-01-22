@@ -1,0 +1,15 @@
+# IntelliJ Project Files
+.idea
+*.iml
+
+# Compiled Data
+*target/
+*build/
+*out/
+*classes/
+
+# Maven
+dependency-reduced-pom.xml
+
+# macOS
+.DS_Store
