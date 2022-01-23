@@ -212,9 +212,11 @@ public class NameConverter extends Converter {
                 else if (!ret) {
                     packConverter.log("      Failed to Rename: " + path1.getFileName().toString() + "->" + newName + extension);
                 }
+
             }
         });
     }
+
 
     protected abstract static class Mapping {
 
