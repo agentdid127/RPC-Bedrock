@@ -12,7 +12,7 @@
 
     <modules>
         <module>bedrock-conversion</module>
-        <module>console-application</module>
+        <module>console</module>
     </modules>
 
     <repositories>

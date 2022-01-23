@@ -18,7 +18,7 @@ public class ImageConverter extends com.agentdid127.resourcepack.library.utiliti
 
 
         this.newImage(defaultW, defaultH);
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC, 0.01f));
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC, 0.15f));
         g2d.drawImage(image2, 0, 0, null);
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
         g2d.drawImage(image, 0, 0, null);
