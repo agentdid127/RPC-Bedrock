@@ -25,8 +25,14 @@
     <dependencies>
         <dependency>
             <groupId>com.github.CoryBorek</groupId>
-            <artifactId>ResourcePackConverter</artifactId>
-            <version>6e7bdb0877</version>
+            <artifactId>resourcepackconverter</artifactId>
+            <version>0f3d3cd9c0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.twelvemonkeys.imageio/imageio-tga -->
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-tga</artifactId>
+            <version>3.8.0</version>
         </dependency>
     </dependencies>
 
