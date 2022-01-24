@@ -39,7 +39,7 @@ public class PackMetaConverter extends Converter {
         JsonObject header = new JsonObject();
         //header properties
         header.addProperty("description", json.get("pack").getAsJsonObject().get("description").getAsString());
-        header.addProperty("name", "Converted Pack");
+        header.addProperty("name", pack.getFileName());
         header.addProperty("uuid", UUID.randomUUID().toString());
 
         //version

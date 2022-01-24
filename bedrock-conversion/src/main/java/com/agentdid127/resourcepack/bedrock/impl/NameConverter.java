@@ -19,6 +19,7 @@ public class NameConverter extends Converter {
 
     protected final Mapping blockMapping = new BlockMapping();
     protected final Mapping blockTGAMapping = new BlockTGAMapping();
+    protected final Mapping itemMapping = new ItemMapping();
 
     public NameConverter(PackConverter packConverter) {
         super(packConverter);
@@ -33,21 +34,32 @@ public class NameConverter extends Converter {
         Util.copyDir(textures_old, textures);
 
         blocks(textures);
+        items(textures);
+
 
 
 
     }
 
+    private void items(Path textures) throws IOException {
+        Path items = textures.resolve("items");
+
+        if (textures.resolve("item").toFile().exists()) {
+            Files.move(textures.resolve("item"), items);
+            renameAll(itemMapping, ".png", items);
+        }
+    }
+
     private void blocks(Path textures) throws IOException {
-        Path blocks = textures.resolve("block");
+        Path blocks = textures.resolve("blocks");
 
         //TODO: Find what images need to be renamed, and rename them
 
-        if (blocks.toFile().exists()) {
+        if (textures.resolve("block").toFile().exists()) {
 
-            Files.move(blocks, textures.resolve("blocks"));
-            renameAll(blockMapping, ".png", textures.resolve("blocks"));
-            renameAll(blockTGAMapping, ".png", ".tga", textures.resolve("blocks"));
+            Files.move(textures.resolve("block"), blocks);
+            renameAll(blockMapping, ".png", blocks);
+            renameAll(blockTGAMapping, ".png", ".tga", blocks);
 
             Path candles = blocks.resolve("candles");
 
@@ -254,6 +266,19 @@ public class NameConverter extends Converter {
         @Override
         protected void load() {
             JsonObject blocks = Util.readJsonResource(packConverter.getGson(), "/blocks.json").getAsJsonObject("tga");
+            if (blocks != null) {
+                for (Map.Entry<String, JsonElement> entry : blocks.entrySet()) {
+                    this.mapping.put(entry.getKey(), entry.getValue().getAsString());
+                }
+            }
+        }
+    }
+
+    protected class ItemMapping extends Mapping {
+
+        @Override
+        protected void load() {
+            JsonObject blocks = Util.readJsonResource(packConverter.getGson(), "/items.json").getAsJsonObject("items");
             if (blocks != null) {
                 for (Map.Entry<String, JsonElement> entry : blocks.entrySet()) {
                     this.mapping.put(entry.getKey(), entry.getValue().getAsString());
