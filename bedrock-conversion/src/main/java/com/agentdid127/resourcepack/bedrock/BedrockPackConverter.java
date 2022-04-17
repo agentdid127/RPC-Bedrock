@@ -4,6 +4,7 @@ import com.agentdid127.resourcepack.bedrock.impl.AssetsRemovalConverter;
 import com.agentdid127.resourcepack.bedrock.impl.PackMetaConverter;
 import com.agentdid127.resourcepack.bedrock.impl.NameConverter;
 import com.agentdid127.resourcepack.bedrock.impl.PackPngConverter;
+import com.agentdid127.resourcepack.bedrock.pack.BPack;
 import com.agentdid127.resourcepack.library.Converter;
 import com.agentdid127.resourcepack.library.PackConverter;
 import com.agentdid127.resourcepack.library.Util;
@@ -43,6 +44,7 @@ public class BedrockPackConverter extends PackConverter {
 
     public void runPack(Pack pack) {
         try {
+            System.out.println(pack.getClass());
             log("Converting " + pack);
 
             pack.getHandler().setup();
@@ -63,7 +65,7 @@ public class BedrockPackConverter extends PackConverter {
 
     public void runDir() throws IOException {
         Files.list(INPUT_DIR)
-                .map(Pack::parse)
+                .map(BPack::parse)
                 .filter(Objects::nonNull)
                 .forEach(pack -> {
                     runPack(pack);
